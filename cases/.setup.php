@@ -1,6 +1,6 @@
 <?php
 require_once __DIR__.'/../init.php';
-$conf = parse_ini_file(dirname(__FILE__).'/config.ini');
+$conf = parse_ini_file(dirname(__FILE__).'/config.ini.sample');
 
 require_once __DIR__.'/../lib/Helper.class.php';
 Helper::setConfig($conf);
