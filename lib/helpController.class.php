@@ -3,9 +3,9 @@
 class helpController extends AbstractController
 {
 
-  public function runStrategy()
-  {
-    $output = <<<HELP
+    public function runStrategy()
+    {
+        $output = <<<HELP
 
 \033[1;34m\033[41m                    MySQL Migration with PHP                         \033[0m
 ---------------------------------------------------------------------
@@ -21,7 +21,7 @@ Available commands:
   \033[1;32mcreate:\033[0m     create new migration
   \033[1;32mlist:\033[0m       list available migrations and mark current version
   \033[1;32mmigrate:\033[0m    migrate to specified time
-  
+
 Available options:
 
   --config       Path to alternate config.ini file that will override the default
@@ -32,7 +32,7 @@ Available options:
   --savedir      directory to save schema.php and migrations
   --verbose      if value On script will output each executed query
   --versiontable table to keep db revisions new row for each revision
-  
+
 For migrate command you can use strtotime format
 Examples:
 *********************************************************************
@@ -48,17 +48,17 @@ Last example will update your database to latest version
 ---------------------------------------------------------------------
 Licenced under: GPL v3
 Author: Maxim Antonov <max.antonoff@gmail.com>
-Author: Sergey Arbuzov <info@whitediver.com>  		
+Author: Sergey Arbuzov <info@whitediver.com>
 
 
 HELP;
 
-    //Strip color output since Windows doesn't support it
-    if (PHP_OS === 'WINNT')
-    {
-      $output = preg_replace('/\\033\[\d+(;\d+)?m/i', '', $output);
-    }
+        //Strip color output since Windows doesn't support it
+        if (PHP_OS === 'WINNT')
+        {
+            $output = preg_replace('/\\033\[\d+(;\d+)?m/i', '', $output);
+        }
 
-    echo $output;
-  }
+        echo $output;
+    }
 }
