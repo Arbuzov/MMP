@@ -56,6 +56,32 @@ class migrateController extends AbstractController
         if($direction === 'Down')
         {
             $migrations = array_reverse($migrations);
+    if(!empty($revisions))
+    {
+      $revision = max($revisions);
+    }
+    else
+    {
+      Output::error('Revision table is empty. Initial schema not applied properly?');
+      exit(1);
+    }
+    
+    $unapplied_migrations = array_diff($migrations, $revisions);
+    
+    if(empty($migrations)||(empty($unapplied_migrations) && $revision == max($migrations) && $target_migration > $revision))
+    {
+      echo 'No new migrations available' . PHP_EOL;
+      return;
+    }
+    elseif($revision < min($migrations) && $target_migration < $revision)
+    {
+      echo 'No older migrations available' . PHP_EOL;
+      return;
+    }
+    else
+    {
+      echo "Will migrate to: " . date('r',$target_migration) . PHP_EOL . PHP_EOL;
+    }
 
             foreach($migrations as $migration)
             {
