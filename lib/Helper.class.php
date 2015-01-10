@@ -302,7 +302,7 @@ class Helper
 
   static function createMigrationContent($version,$diff)
   {
-      $indent = self::TAB;
+      //$indent = self::TAB;
 
       $content =
         "<?php\n" .
@@ -368,7 +368,7 @@ class Helper
 
   static function createSchema($queries)
   {
-    $indent = self::TAB;
+    //$indent = self::TAB;
 
     $content =
       "<?php\n".

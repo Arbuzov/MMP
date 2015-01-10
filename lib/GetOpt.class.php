@@ -142,7 +142,7 @@ class GetOpt {
    */
   private static function parseValue(&$args, $arg, $tpl)
   {
-    foreach($tpl as $t => $v)
+    foreach(array_keys($tpl) as $t)
     {
       switch($t)
       {
@@ -167,5 +167,3 @@ class GetOpt {
     return null;
   }
 }
-
-?>
