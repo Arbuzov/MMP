@@ -5,4 +5,5 @@ db=mmpi_test
 savedir=db
 verbose=On
 versiontable=db_revisions
+driver=mysqli
 

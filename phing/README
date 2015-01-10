@@ -19,6 +19,7 @@ Phing build.xml example:
                 config_file="config.ini"
                 action="migrate"
                 action_options="now"
+                driver="mysqli"
             />
     </target>
 </project>
