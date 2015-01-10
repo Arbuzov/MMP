@@ -5,7 +5,40 @@ php:
   - 5.4
   - 5.5
   - 5.6
+  - hhvm
+
+before_script:
+  ## PHP_CodeSniffer
+  - pear install pear/PHP_CodeSniffer
+  - phpenv rehash
+  ## PHP Copy/Paste Detector
+  - curl -o phpcpd.phar https://phar.phpunit.de/phpcpd.phar
+  ## PHP Mess Detector
+  - pear config-set preferred_state beta
+  - printf "\n" | pecl install imagick
+  - pear channel-discover pear.phpmd.org
+  - pear channel-discover pear.pdepend.org
+  - pear install --alldeps phpmd/PHP_PMD
+  - phpenv rehash
+  ## PHPLOC
+  - curl -o phploc.phar https://phar.phpunit.de/phploc.phar
 
 script:
   - cp config.ini.sample cases/config.ini
   - ./test.php
+  ## PHP_CodeSniffer
+  ## - phpcs --report=emacs --standard=Zend lib
+  ## PHP Copy/Paste Detector
+  - php phpcpd.phar --verbose lib
+  ## PHP Mess Detector
+  - phpmd lib text cleancode
+  ##- phpmd lib text codesize
+  ## - phpmd lib text controversial
+  ## - phpmd lib text naming
+  - phpmd lib text unusedcode
+    ## PHPLOC
+  - php phploc.phar lib
+  
+notifications:
+  email:
+    info@whitediver.com
